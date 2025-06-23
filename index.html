@@ -1,14 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <title>正在跳转...</title>
-  <meta http-equiv="refresh" content="0; url=https://fusiontrade.info">
-  <script type="text/javascript">
-    window.location.href = "https://fusiontrade.info";
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正在安全跳转...</title>
+    <style>
+        /* 页面整体样式 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* 内容容器 */
+        .container {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* 加载动画 (CSS Spinner) */
+        .loader {
+            border: 4px solid #f3f3f3; /* 浅灰色背景环 */
+            border-top: 4px solid #3498db; /* 蓝色加载部分 */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1.5s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+
+        /* 旋转动画定义 */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 提示信息样式 */
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        /* 手动跳转链接样式 */
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <p>如果您的浏览器没有自动跳转，请<a href="fusiontrade.info">点击这里</a>。</p>
+
+    <div class="container">
+        <div class="loader"></div>
+        <p>页面加载中，请稍候...</p>
+        <p id="fallback">
+            <a href="https://fusiontrade.info">如果长时间没有响应，请点击这里手动跳转</a>
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        // --- 请在这里配置 ---
+
+        // 1. 设置你的目标URL
+        const targetUrl = "https://fusiontrade.info";
+
+        // 2. 设置延迟时间（单位：毫秒）。例如 2000 表示延迟2秒。
+        const delayTime = 3000;
+
+        // --- 配置结束 ---
+
+
+        // 执行延时跳转
+        setTimeout(function() {
+            window.location.href = targetUrl;
+        }, delayTime);
+
+        // 同时，也把备用链接的href更新一下，确保一致
+        document.getElementById('fallback').getElementsByTagName('a')[0].href = targetUrl;
+
+    </script>
+
 </body>
 </html>
