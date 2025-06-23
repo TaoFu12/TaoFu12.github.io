@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>正在安全跳转...</title>
     <style>
-        /* 页面整体样式 */
+        /* 样式部分与之前完全相同，保持页面美观 */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: #f4f4f4;
@@ -18,39 +18,29 @@
             height: 100vh;
             text-align: center;
         }
-
-        /* 内容容器 */
         .container {
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-
-        /* 加载动画 (CSS Spinner) */
         .loader {
-            border: 4px solid #f3f3f3; /* 浅灰色背景环 */
-            border-top: 4px solid #3498db; /* 蓝色加载部分 */
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
             border-radius: 50%;
             width: 40px;
             height: 40px;
             animation: spin 1.5s linear infinite;
             margin: 0 auto 20px auto;
         }
-
-        /* 旋转动画定义 */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        /* 提示信息样式 */
         p {
             font-size: 18px;
             margin-bottom: 20px;
         }
-        
-        /* 手动跳转链接样式 */
         a {
             color: #3498db;
             text-decoration: none;
@@ -65,31 +55,45 @@
 
     <div class="container">
         <div class="loader"></div>
-        <p>页面加载中，请稍候...</p>
+        <p>正在为您分配安全节点，请稍候...</p>
         <p id="fallback">
-            <a href="https://dub.sh/0ZMo49y">如果长时间没有响应，请点击这里手动跳转</a>
+            <a href="#">如果长时间没有响应，请点击这里手动跳转</a>
         </p>
     </div>
 
     <script type="text/javascript">
         // --- 请在这里配置 ---
 
-        // 1. 设置你的目标URL
-        const targetUrl = "https://dub.sh/0ZMo49y";
+        // 1. 在这里维护你的链接池 (已将您提供的20个链接放入)
+        const linkPool = [
+            "https://dub.sh/0ZMo49y", "https://dub.sh/qWyjpao", "https://dub.sh/cwTiZtq",
+            "https://dub.sh/47Vqixc", "https://dub.sh/PJPsEKe", "https://dub.sh/rJjuOjf",
+            "https://dub.sh/KaNqFZg", "https://dub.sh/RiaMfas", "https://dub.sh/sD6rsy1",
+            "https://dub.sh/N9J2ZUy", "https://dub.sh/J8Rtt0d", "https://dub.sh/zlSNUtw",
+            "https://dub.sh/ayCdXXE", "https://dub.sh/ol1w2TQ", "https://dub.sh/w5VPGg4",
+            "https://dub.sh/HZg2huf", "https://dub.sh/bUaKiVG", "https://dub.sh/QpvPZUq",
+            "https://dub.sh/D9AVYOG", "https://dub.sh/29sCQKU"
+        ];
 
-        // 2. 设置延迟时间（单位：毫秒）。例如 2000 表示延迟2秒。
+        // 2. 设置延迟时间（单位：毫秒）。推荐 3000 (3秒)。
         const delayTime = 3000;
 
         // --- 配置结束 ---
 
 
-        // 执行延时跳转
+        // --- 以下为自动执行的逻辑，无需修改 ---
+
+        // 1. 从链接池中随机选择一个链接
+        const randomIndex = Math.floor(Math.random() * linkPool.length);
+        const targetUrl = linkPool[randomIndex];
+
+        // 2. 更新备用链接的地址
+        document.getElementById('fallback').getElementsByTagName('a')[0].href = targetUrl;
+
+        // 3. 执行延时跳转
         setTimeout(function() {
             window.location.href = targetUrl;
         }, delayTime);
-
-        // 同时，也把备用链接的href更新一下，确保一致
-        document.getElementById('fallback').getElementsByTagName('a')[0].href = targetUrl;
 
     </script>
 
